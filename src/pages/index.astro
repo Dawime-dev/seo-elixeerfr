@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import config from '../../site.config.json';
+
+const allArticles = await getCollection('articles');
+const recentArticles = allArticles
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 6);
+
+const categoryColors: Record<string, string> = {
+  'strategie-marketing': 'bg-violet-500/10 text-violet-400 border border-violet-500/20',
+  'croissance-b2b': 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20',
+  'outils-automation': 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
+  'leadership-gestion': 'bg-amber-500/10 text-amber-400 border border-amber-500/20',
+};
+
+const categoryIcons: Record<string, string> = {
+  'strategie-marketing': '🎯',
+  'croissance-b2b': '🚀',
+  'outils-automation': '⚙️',
+  'leadership-gestion': '👥',
+};
+---
+
+<BaseLayout title="Accueil" description={config.description}>
+  <!-- JSON-LD Organization -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": config.name,
+    "url": config.url,
+    "description": config.description,
+    "logo": `${config.url}/favicon.svg`
+  })} />
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-slate-950 pt-20 pb-24">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-indigo-600/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-violet-600/10 rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 mb-6">
+        <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+        <span class="text-indigo-400 text-sm font-medium">Ressources B2B premium</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
+        Accélérez votre
+        <span class="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent"> croissance B2B</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10">
+        {config.description}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/ressources-gratuites" class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-indigo-600/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+          Ressources gratuites
+        </a>
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-6 py-3 rounded-xl border border-slate-700 hover:border-slate-600 transition-all duration-200 hover:-translate-y-0.5">
+          Nous contacter
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="bg-slate-950 py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">Explorez nos thématiques</h2>
+        <p class="text-slate-400 max-w-xl mx-auto">Des contenus organisés par domaine pour trouver exactement ce dont vous avez besoin.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {config.categories.map((cat: { name: string; slug: string; description: string }) => (
+          <a
+            href={`/categorie/${cat.slug}`}
+            class="group relative bg-slate-900 border border-slate-800 hover:border-indigo-500/40 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/5"
+          >
+            <div class="text-3xl mb-4">{categoryIcons[cat.slug] || '📌'}</div>
+            <h3 class="text-white font-semibold text-base mb-2 group-hover:text-indigo-400 transition-colors">{cat.name}</h3>
+            <p class="text-slate-500 text-sm leading-relaxed line-clamp-2">{cat.description}</p>
+            <div class="mt-4 flex items-center gap-1 text-indigo-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+              Explorer
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PILIER PAGES -->
+  <section class="bg-slate-900/50 border-y border-slate-800 py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <a href="/ressources-gratuites" class="group flex items-start gap-5 bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-indigo-500/30 rounded-2xl p-6 transition-all duration-300">
+          <div class="flex-shrink-0 w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-2xl border border-indigo-500/20">
+            📚
+          </div>
+          <div>
+            <h3 class="text-white font-semibold text-lg mb-1 group-hover:text-indigo-400 transition-colors">Ressources gratuites</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Guides, templates et checklists téléchargeables pour booster vos projets marketing et commerciaux.</p>
+          </div>
+        </a>
+        <a href="/contact" class="group flex items-start gap-5 bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-violet-500/30 rounded-2xl p-6 transition-all duration-300">
+          <div class="flex-shrink-0 w-12 h-12 bg-violet-500/10 rounded-xl flex items-center justify-center text-2xl border border-violet-500/20">
+            💬
+          </div>
+          <div>
+            <h3 class="text-white font-semibold text-lg mb-1 group-hover:text-violet-400 transition-colors">Nous contacter</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Une question, un partenariat ou une suggestion éditoriale ? Notre équipe vous répond rapidement.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES RÉCENTS -->
+  <section class="bg-slate-950 py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-10">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white mb-1">Articles récents</h2>
+          <p class="text-slate-400 text-sm">Les dernières analyses et stratégies pour les pros du B2B.</p>
+        </div>
+      </div>
+
+      {recentArticles.length === 0 ? (
+        <div class="text-center py-16">
+          <p class="text-slate-500 text-lg">Aucun article disponible pour le moment.</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {recentArticles.map((article) => (
+            <a
+              href={`/${article.slug}`}
+              class="group flex flex-col bg-slate-900 border border-slate-800 hover:border-indigo-500/30 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/5"
+            >
+              {article.data.image && (
+                <div class="aspect-video overflow-hidden">
+                  <img
+                    src={article.data.image}
+                    alt={article.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div class="flex flex-col flex-1 p-5">
+                {article.data.category && (
+                  <span class={`self-start text-xs font-semibold px-3 py-1 rounded-full mb-3 ${categoryColors[article.data.category] || 'bg-slate-700 text-slate-300'}`}>
+                    {config.categories.find((c: { slug: string }) => c.slug === article.data.category)?.name || article.data.category}
+                  </span>
+                )}
+                <h3 class="text-white font-semibold text-base leading-snug mb-2 group-hover:text-indigo-400 transition-colors line-clamp-2">
+                  {article.data.title}
+                </h3>
+                {article.data.description && (
+                  <p class="text-slate-500 text-sm leading-relaxed line-clamp-3 flex-1">{article.data.description}</p>
+                )}
+                <div class="mt-4 flex items-center justify-between pt-4 border-t border-slate-800">
+                  {article.data.date && (
+                    <time class="text-slate-600 text-xs" datetime={new Date(article.data.date).toISOString()}>
+                      {new Date(article.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </time>
+                  )}
+                  <span class="text-indigo-400 text-xs font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Lire
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA NEWSLETTER -->
+  <section class="bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 border-t border-slate-800 py-16">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+      <div class="text-3xl mb-4">✉️</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">Restez en avance</h2>
+      <p class="text-slate-400 mb-8">Rejoignez des milliers de professionnels B2B. Les meilleurs insights directement dans votre boîte mail, chaque semaine.</p>
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input
+          type="email"
+          placeholder="votre@email.com"
+          class="flex-1 bg-slate-800 border border-slate-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 text-white placeholder-slate-500 px-4 py-3 rounded-xl outline-none transition-all text-sm"
+          required
+        />
+        <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 whitespace-nowrap shadow-lg shadow-indigo-600/25">
+          S'abonner
+        </button>
+      </form>
+      <p class="text-slate-600 text-xs mt-4">Pas de spam. Désabonnement en un clic.</p>
+    </div>
+  </section>
+</BaseLayout>

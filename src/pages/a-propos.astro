@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../../site.config.json';
+---
+
+<BaseLayout
+  title="À propos"
+  description="Découvrez la mission de Scalr : simplifier le business B2B avec des contenus actionnables pour les professionnels qui avancent vite."
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": `À propos | ${siteConfig.name}`,
+    "url": `${siteConfig.url}/a-propos`,
+    "description": "Découvrez la mission de Scalr : simplifier le business B2B avec des contenus actionnables.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": siteConfig.name,
+      "url": siteConfig.url
+    }
+  })} />
+
+  <!-- Header -->
+  <section class="relative bg-gradient-to-b from-indigo-600/10 to-slate-950 pt-16 pb-12">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-indigo-600/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+        <a href="/" class="hover:text-slate-300 transition-colors">Accueil</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        <span class="text-slate-400">À propos</span>
+      </nav>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4">À propos de <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Scalr</span></h1>
+      <p class="text-slate-400 text-lg">Notre mission, notre approche, pour qui nous écrivons.</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="bg-slate-950 py-14">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose-scalr">
+
+        <div class="mb-10">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 bg-indigo-500/10 rounded-lg flex items-center justify-center border border-indigo-500/20">
+              <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-white">Notre mission : simplifier le business B2B</h2>
+          </div>
+          <p class="text-slate-400 leading-relaxed">Chez <strong class="text-white">Scalr</strong>, nous croyons que chaque décision business doit reposer sur des informations claires, fiables et actionnables. Notre équipe de rédacteurs et d'experts terrain décrypte les tendances du marketing B2B, de la croissance commerciale et du management pour vous aider à avancer plus vite.</p>
+        </div>
+
+        <div class="w-full h-px bg-slate-800 mb-10"></div>
+
+        <div class="mb-10">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 bg-violet-500/10 rounded-lg flex items-center justify-center border border-violet-500/20">
+              <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-white">Pour qui sommes-nous ?</h2>
+          </div>
+          <p class="text-slate-400 leading-relaxed">Scalr s'adresse aux <strong class="text-white">dirigeants, responsables marketing, commerciaux et entrepreneurs</strong> qui opèrent dans un environnement B2B. Que vous cherchiez à générer plus de leads, structurer vos équipes ou adopter les bons outils, vous trouverez ici des ressources concrètes et sans jargon inutile.</p>
+        </div>
+
+        <div class="w-full h-px bg-slate-800 mb-10"></div>
+
+        <div class="mb-10">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 bg-cyan-500/10 rounded-lg flex items-center justify-center border border-cyan-500/20">
+              <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-white">Une approche éditoriale exigeante</h2>
+          </div>
+          <p class="text-slate-400 leading-relaxed">Chaque article publié sur Scalr est le fruit d'une recherche approfondie et d'une relecture rigoureuse. Nous privilégions la <strong class="text-white">qualité à la quantité</strong> : des contenus longs, documentés et directement applicables à votre quotidien professionnel.</p>
+        </div>
+
+        <div class="w-full h-px bg-slate-800 mb-10"></div>
+
+        <div class="mb-10">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center border border-emerald-500/20">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-white">Des ressources gratuites à portée de main</h2>
+          </div>
+          <p class="text-slate-400 leading-relaxed">En complément de nos articles, nous proposons des <strong class="text-white">guides, templates et checklists téléchargeables</strong> pour vous faire gagner du temps sur vos projets marketing et commerciaux. Accédez à notre bibliothèque de ressources sans inscription obligatoire.</p>
+        </div>
+
+        <div class="w-full h-px bg-slate-800 mb-10"></div>
+
+        <div class="mb-10">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 bg-amber-500/10 rounded-lg flex items-center justify-center border border-amber-500/20">
+              <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-white">Rejoignez la communauté Scalr</h2>
+          </div>
+          <p class="text-slate-400 leading-relaxed">Rejoignez des milliers de professionnels B2B qui lisent Scalr chaque semaine. Abonnez-vous à notre newsletter pour recevoir les meilleurs contenus directement dans votre boîte mail, sans bruit, sans spam — juste l'essentiel.</p>
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-12 bg-gradient-to-r from-indigo-950 to-slate-900 border border-indigo-500/20 rounded-2xl p-8 text-center">
+        <h3 class="text-white font-bold text-xl mb-2">Prêt à accélérer ?</h3>
+        <p class="text-slate-400 mb-6 text-sm">Découvrez nos ressources gratuites ou contactez notre équipe.</p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/ressources-gratuites" class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-5 py-2.5 rounded-xl transition-all text-sm">
+            Voir les ressources
+          </a>
+          <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold px-5 py-2.5 rounded-xl border border-slate-700 transition-all text-sm">
+            Nous contacter
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

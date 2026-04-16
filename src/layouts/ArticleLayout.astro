@@ -1,0 +1,162 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import siteConfig from '../../site.config.json';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  category?: string;
+  categorySlug?: string;
+  date?: Date | string;
+  author?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  category,
+  categorySlug,
+  date,
+  author = 'Équipe Scalr'
+} = Astro.props;
+
+const formattedDate = date
+  ? new Date(date).toLocaleDateString('fr-FR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    })
+  : null;
+
+const categoryColor: Record<string, string> = {
+  'strategie-marketing': 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
+  'croissance-b2b': 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+  'outils-automation': 'bg-violet-500/20 text-violet-300 border-violet-500/30',
+  'leadership-gestion': 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+};
+
+const badgeClass = categorySlug ? (categoryColor[categorySlug] || 'bg-slate-700/50 text-slate-300 border-slate-600') : 'bg-slate-700/50 text-slate-300 border-slate-600';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description || '',
+  "image": image ? `${siteConfig.url}${image}` : `${siteConfig.url}/og-default.jpg`,
+  "author": {
+    "@type": "Person",
+    "name": author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteConfig.name,
+    "url": siteConfig.url
+  },
+  "datePublished": date ? new Date(date).toISOString() : undefined,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": Astro.url.href
+  }
+};
+---
+
+<BaseLayout title={title} description={description} image={image} type="article">
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+
+  <!-- Hero image -->
+  {image && (
+    <div class="relative w-full h-64 md:h-96 overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+    </div>
+  )}
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-10 md:py-16">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-sm text-slate-400 flex-wrap">
+        <li>
+          <a href="/" class="hover:text-indigo-400 transition-colors">Accueil</a>
+        </li>
+        <li class="text-slate-600">/</li>
+        {category && categorySlug && (
+          <>
+            <li>
+              <a
+                href={`/categorie/${categorySlug}`}
+                class="hover:text-indigo-400 transition-colors"
+              >
+                {category}
+              </a>
+            </li>
+            <li class="text-slate-600">/</li>
+          </>
+        )}
+        <li class="text-slate-200 truncate max-w-xs">{title}</li>
+      </ol>
+    </nav>
+
+    <!-- Meta -->
+    <header class="mb-10">
+      {category && (
+        <span class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border mb-4 ${badgeClass}`}>
+          {category}
+        </span>
+      )}
+
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-5">
+        {title}
+      </h1>
+
+      {description && (
+        <p class="text-lg text-slate-400 leading-relaxed mb-6">
+          {description}
+        </p>
+      )}
+
+      <div class="flex items-center gap-4 text-sm text-slate-500 border-t border-slate-800 pt-5">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-xs">
+            {author.charAt(0)}
+          </div>
+          <span class="text-slate-300 font-medium">{author}</span>
+        </div>
+        {formattedDate && (
+          <>
+            <span class="text-slate-700">•</span>
+            <time datetime={date ? new Date(date).toISOString() : ''} class="text-slate-400">
+              {formattedDate}
+            </time>
+          </>
+        )}
+      </div>
+    </header>
+
+    <!-- Article body -->
+    <div class="article-content">
+      <slot />
+    </div>
+
+    <!-- CTA bas d'article -->
+    <div class="mt-16 p-8 rounded-2xl bg-gradient-to-br from-indigo-600/20 to-violet-600/20 border border-indigo-500/20">
+      <p class="text-sm text-indigo-400 font-semibold uppercase tracking-wider mb-2">Restez en avance</p>
+      <h3 class="text-2xl font-bold text-white mb-3">Les meilleures stratégies B2B, directement dans votre boîte mail.</h3>
+      <p class="text-slate-400 mb-6">Rejoignez des centaines de professionnels qui lisent Scalr chaque semaine.</p>
+      <a
+        href="/ressources-gratuites"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-colors"
+      >
+        Accéder aux ressources gratuites
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </article>
+</BaseLayout>

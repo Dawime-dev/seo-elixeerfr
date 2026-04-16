@@ -1,0 +1,30 @@
+{
+    "name": "Scalr",
+    "description": "Scalr — Le média B2B des professionnels ambitieux. Stratégie, marketing, croissance et outils pour scaler votre business.",
+    "url": "https:\/\/elixeer.fr",
+    "primaryColor": "#1A1A2E",
+    "categories": [
+        {
+            "name": "Stratégie Marketing",
+            "slug": "strategie-marketing",
+            "description": "Conseils et méthodes pour élaborer une stratégie marketing B2B efficace et générer des leads qualifiés."
+        },
+        {
+            "name": "Croissance B2B",
+            "slug": "croissance-b2b",
+            "description": "Techniques de growth hacking, acquisition client et développement commercial pour les entreprises B2B."
+        },
+        {
+            "name": "Outils & Automation",
+            "slug": "outils-automation",
+            "description": "Sélection des meilleurs outils CRM, automation marketing et solutions SaaS pour optimiser votre business."
+        },
+        {
+            "name": "Leadership & Gestion",
+            "slug": "leadership-gestion",
+            "description": "Ressources pour managers et dirigeants : pilotage d'équipe, prise de décision et culture d'entreprise."
+        }
+    ],
+    "locale": "fr",
+    "niche": "Buisness, marketing, b2b"
+}

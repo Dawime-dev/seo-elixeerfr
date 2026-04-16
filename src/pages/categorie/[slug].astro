@@ -1,0 +1,158 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import siteConfig from '../../../site.config.json';
+
+export async function getStaticPaths() {
+  return siteConfig.categories.map((cat: { name: string; slug: string; description: string }) => ({
+    params: { slug: cat.slug },
+    props: { category: cat },
+  }));
+}
+
+const { category } = Astro.props;
+
+const allArticles = await getCollection('articles');
+const categoryArticles = allArticles
+  .filter((a) => a.data.category === category.slug)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const categoryColors: Record<string, string> = {
+  'strategie-marketing': 'bg-violet-500/10 text-violet-400 border border-violet-500/20',
+  'croissance-b2b': 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20',
+  'outils-automation': 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
+  'leadership-gestion': 'bg-amber-500/10 text-amber-400 border border-amber-500/20',
+};
+
+const categoryGradients: Record<string, string> = {
+  'strategie-marketing': 'from-violet-600/20 to-slate-950',
+  'croissance-b2b': 'from-cyan-600/20 to-slate-950',
+  'outils-automation': 'from-emerald-600/20 to-slate-950',
+  'leadership-gestion': 'from-amber-600/20 to-slate-950',
+};
+
+const categoryIcons: Record<string, string> = {
+  'strategie-marketing': '🎯',
+  'croissance-b2b': '🚀',
+  'outils-automation': '⚙️',
+  'leadership-gestion': '👥',
+};
+---
+
+<BaseLayout
+  title={category.name}
+  description={category.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": category.name,
+    "description": category.description,
+    "url": `${siteConfig.url}/categorie/${category.slug}`,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": siteConfig.name,
+      "url": siteConfig.url
+    }
+  })} />
+
+  <!-- Header catégorie -->
+  <section class={`relative bg-gradient-to-b ${categoryGradients[category.slug] || 'from-indigo-600/20 to-slate-950'} pt-16 pb-14`}>
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-600/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+        <a href="/" class="hover:text-slate-300 transition-colors">Accueil</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        <span class="text-slate-400">{category.name}</span>
+      </nav>
+      <div class="flex items-center gap-4 mb-4">
+        <span class="text-4xl">{categoryIcons[category.slug] || '📌'}</span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white">{category.name}</h1>
+      </div>
+      <p class="text-slate-400 text-lg max-w-2xl leading-relaxed">{category.description}</p>
+      <div class="mt-4">
+        <span class={`inline-flex items-center text-sm font-medium px-3 py-1 rounded-full ${categoryColors[category.slug] || 'bg-slate-700 text-slate-300'}`}>
+          {categoryArticles.length} article{categoryArticles.length !== 1 ? 's' : ''}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles de la catégorie -->
+  <section class="bg-slate-950 py-14">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {categoryArticles.length === 0 ? (
+        <div class="text-center py-20">
+          <div class="text-5xl mb-4">🔍</div>
+          <h2 class="text-xl font-semibold text-white mb-2">Aucun article pour le moment</h2>
+          <p class="text-slate-500 mb-8">Du contenu sur cette thématique arrive bientôt.</p>
+          <a href="/" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-5 py-2.5 rounded-xl transition-all">
+            Retour à l'accueil
+          </a>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categoryArticles.map((article) => (
+            <a
+              href={`/${article.slug}`}
+              class="group flex flex-col bg-slate-900 border border-slate-800 hover:border-indigo-500/30 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/5"
+            >
+              {article.data.image && (
+                <div class="aspect-video overflow-hidden">
+                  <img
+                    src={article.data.image}
+                    alt={article.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div class="flex flex-col flex-1 p-5">
+                <h3 class="text-white font-semibold text-base leading-snug mb-2 group-hover:text-indigo-400 transition-colors line-clamp-2">
+                  {article.data.title}
+                </h3>
+                {article.data.description && (
+                  <p class="text-slate-500 text-sm leading-relaxed line-clamp-3 flex-1">{article.data.description}</p>
+                )}
+                <div class="mt-4 flex items-center justify-between pt-4 border-t border-slate-800">
+                  {article.data.date && (
+                    <time class="text-slate-600 text-xs" datetime={new Date(article.data.date).toISOString()}>
+                      {new Date(article.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </time>
+                  )}
+                  <span class="text-indigo-400 text-xs font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Lire
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Autres catégories -->
+  <section class="bg-slate-900/40 border-t border-slate-800 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-lg font-semibold text-white mb-6">Autres thématiques</h2>
+      <div class="flex flex-wrap gap-3">
+        {siteConfig.categories
+          .filter((c: { slug: string }) => c.slug !== category.slug)
+          .map((c: { name: string; slug: string }) => (
+            <a
+              href={`/categorie/${c.slug}`}
+              class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-indigo-500/40 text-slate-300 hover:text-white text-sm font-medium px-4 py-2 rounded-xl transition-all duration-200"
+            >
+              {categoryIcons[c.slug] || '📌'}
+              {c.name}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

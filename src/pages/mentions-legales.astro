@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../../site.config.json';
+---
+
+<BaseLayout
+  title="Mentions légales"
+  description="Mentions légales du site Scalr — éditeur, hébergeur, propriété intellectuelle et politique de confidentialité."
+>
+  <!-- Header -->
+  <section class="relative bg-gradient-to-b from-slate-900 to-slate-950 pt-16 pb-12 border-b border-slate-800">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+        <a href="/" class="hover:text-slate-300 transition-colors">Accueil</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        <span class="text-slate-400">Mentions légales</span>
+      </nav>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">Mentions légales</h1>
+      <p class="text-slate-500 text-sm">Dernière mise à jour : {new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="bg-slate-950 py-14">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+      <!-- Éditeur -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 bg-indigo-500/10 rounded-lg flex items-center justify-center border border-indigo-500/20 text-xs">1</span>
+          Éditeur du site
+        </h2>
+        <div class="space-y-2 text-slate-400 text-sm leading-relaxed">
+          <p><span class="text-slate-300 font-medium">Nom du site :</span> {siteConfig.name}</p>
+          <p><span class="text-slate-300 font-medium">Domaine :</span> <a href={siteConfig.url} class="text-indigo-400 hover:underline">{siteConfig.url}</a></p>
+          <p><span class="text-slate-300 font-medium">Directeur de la publication :</span> [Nom du responsable]</p>
+          <p><span class="text-slate-300 font-medium">Adresse :</span> [Adresse complète]</p>
+          <p><span class="text-slate-300 font-medium">Contact :</span> <a href="mailto:contact@elixeer.fr" class="text-indigo-400 hover:underline">contact@elixeer.fr</a></p>
+          <p><span class="text-slate-300 font-medium">SIRET :</span> [Numéro SIRET]</p>
+        </div>
+      </div>
+
+      <!-- Hébergement -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 bg-indigo-500/10 rounded-lg flex items-center justify-center border border-indigo-500/20 text-xs">2</span>
+          Hébergement
+        </h2>
+        <div class="space-y-2 text-slate-400 text-sm leading-relaxed">
+          <p>Ce site est hébergé par :</p>
+          <p><span class="text-slate-300 font-medium">Société :</span> [Nom de l'hébergeur]</p>
+          <p><span class="text-slate-300 font-medium">Adresse :</span> [Adresse de l'hébergeur]</p>
+          <p><span class="text-slate-300 font-medium">Site web :</span> <a href="#" class="text-indigo-400 hover:underline">[URL hébergeur]</a></p>
+        </div>
+      </div>
+
+      <!-- Propriété intellectuelle -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 bg-indigo-500/10 rounded-lg flex items-center justify-center border border-indigo-500/20 text-xs">3</span>
+          Propriété intellectuelle
+        </h2>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          L'ensemble des contenus présents sur le site <strong class="text-slate-300">{siteConfig.name}</strong> (textes, images, logos, graphismes) sont protégés par le droit d'auteur et sont la propriété exclusive de leurs auteurs respectifs. Toute reproduction, distribution, modification ou utilisation de ces contenus, même partielle, sans autorisation expresse et écrite est strictement interdite et constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la Propriété Intellectuelle.
+        </p>
+      </div>
+
+      <!-- Données personnelles -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 bg-indigo-500/10 rounded-lg flex items-center justify-center border border-indigo-500/20 text-xs">4</span>
+          Données personnelles & RGPD
+        </h2>
+        <div class="space-y-3 text-slate-400 text-sm leading-relaxed">
+          <p>
+            Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition concernant vos données personnelles.
+          </p>
+          <p>
+            Les données collectées via les formulaires de contact ou d'inscription à la newsletter sont utilisées uniquement pour répondre à vos demandes et vous envoyer des communications auxquelles vous avez souscrit. Elles ne sont jamais cédées à des tiers.
+          </p>
+          <p>
+            Pour exercer vos droits ou pour toute question relative à la protection de vos données, vous pouvez nous contacter à l'adresse suivante : <a href="mailto:contact@elixeer.fr" class="text-indigo-400 hover:underline">contact@elixeer.fr</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Cookies -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 bg-indigo-500/10 rounded-lg flex items-center justify-center border border-indigo-500/20 text-xs">5</span>
+          Cookies
+        </h2>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Le site {siteConfig.name} peut utiliser des cookies à des fins de mesure d'audience et d'amélioration de l'expérience utilisateur. Vous pouvez configurer votre navigateur pour refuser les cookies ou être averti lorsque des cookies sont envoyés. La désactivation des cookies peut affecter certaines fonctionnalités du site.
+        </p>
+      </div>
+
+      <!-- Responsabilité -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8">
+        <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+          <span class="w-7 h-7 bg-indigo-500/10 rounded-lg flex items-center justify-center border border-indigo-500/20 text-xs">6</span>
+          Limitation de responsabilité
+        </h2>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          L'éditeur s'efforce de fournir des informations aussi précises que possible. Toutefois, les contenus publiés sur <strong class="text-slate-300">{siteConfig.name}</strong> sont fournis à titre informatif uniquement et ne constituent pas des conseils juridiques, financiers ou professionnels. L'éditeur ne pourra être tenu responsable des erreurs ou omissions dans les informations diffusées, ni de l'utilisation qui en est faite par les visiteurs.
+        </p>
+      </div>
+
+      <!-- Contact -->
+      <div class="bg-gradient-to-r from-indigo-950 to-slate-900 border border-indigo-500/20 rounded-2xl p-6 sm:p-8 text-center">
+        <h3 class="text-white font-semibold mb-2">Une question ?</h3>
+        <p class="text-slate-400 text-sm mb-4">Pour toute question relative aux présentes mentions légales, contactez-nous.</p>
+        <a href="/contact" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-5 py-2.5 rounded-xl transition-all text-sm">
+          Nous contacter
+        </a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,103 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  slug: string;
+  category?: string;
+  categorySlug?: string;
+  date?: Date | string;
+  image?: string;
+}
+
+const {
+  title,
+  description,
+  slug,
+  category,
+  categorySlug,
+  date,
+  image
+} = Astro.props;
+
+const formattedDate = date
+  ? new Date(date).toLocaleDateString('fr-FR', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    })
+  : null;
+
+const categoryColor: Record<string, string> = {
+  'strategie-marketing': 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
+  'croissance-b2b': 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+  'outils-automation': 'bg-violet-500/20 text-violet-300 border-violet-500/30',
+  'leadership-gestion': 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+};
+
+const badgeClass = categorySlug
+  ? (categoryColor[categorySlug] || 'bg-slate-700/50 text-slate-300 border-slate-600')
+  : 'bg-slate-700/50 text-slate-300 border-slate-600';
+---
+
+<article class="group relative flex flex-col bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-600 transition-all duration-300 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5">
+
+  <!-- Image -->
+  {image ? (
+    <a href={`/articles/${slug}`} class="block overflow-hidden h-48 flex-shrink-0">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
+      />
+    </a>
+  ) : (
+    <a href={`/articles/${slug}`} class="block h-48 flex-shrink-0 bg-gradient-to-br from-indigo-600/20 to-violet-600/20 flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-indigo-500/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+        <polyline points="16 7 22 7 22 13"/>
+      </svg>
+    </a>
+  )}
+
+  <!-- Content -->
+  <div class="flex flex-col flex-1 p-6">
+
+    <!-- Category & date -->
+    <div class="flex items-center gap-2 flex-wrap mb-3">
+      {category && (
+        <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${badgeClass}`}>
+          {category}
+        </span>
+      )}
+      {formattedDate && (
+        <time datetime={date ? new Date(date).toISOString() : ''} class="text-xs text-slate-500">
+          {formattedDate}
+        </time>
+      )}
+    </div>
+
+    <!-- Title -->
+    <h2 class="text-base md:text-lg font-bold text-white leading-snug mb-2 group-hover:text-indigo-300 transition-colors line-clamp-2">
+      <a href={`/articles/${slug}`} class="stretched-link after:absolute after:inset-0">
+        {title}
+      </a>
+    </h2>
+
+    <!-- Description -->
+    {description && (
+      <p class="text-sm text-slate-400 leading-relaxed line-clamp-2 flex-1">
+        {description}
+      </p>
+    )}
+
+    <!-- Read more -->
+    <div class="mt-4 flex items-center gap-1 text-sm text-indigo-400 font-semibold group-hover:gap-2 transition-all">
+      Lire l'article
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14"/>
+        <path d="m12 5 7 7-7 7"/>
+      </svg>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,355 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../../site.config.json';
+
+const pageTitle = 'Ressources Gratuites';
+const pageDescription = 'Bibliothèque de guides, templates et checklists B2B téléchargeables gratuitement. Accélérez votre croissance avec des ressources actionnables créées par des experts marketing.';
+
+const resources = [
+  {
+    category: 'Guide',
+    badge: 'Populaire',
+    badgeColor: 'blue',
+    title: 'Guide complet : Construire une stratégie de contenu B2B en 90 jours',
+    description: "Un plan d\'action structuré pour créer, distribuer et mesurer votre contenu B2B. Inclut un calendrier éditorial prêt à l\"emploi, des templates de briefs et des KPIs à suivre.',
+    pages: '42 pages',
+    format: 'PDF',
+    tags: ['Stratégie', 'Contenu', 'Planning'],
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+    color: 'blue'
+  },
+  {
+    category: 'Template',
+    badge: 'Nouveau',
+    badgeColor: 'emerald',
+    title: "Pack de 12 templates d\'emails de prospection B2B",
+    description: "Templates d\'emails froids et de nurturing éprouvés pour chaque étape du funnel. Taux d\"ouverture moyen de 38% observé sur notre panel de 500 SDRs.',
+    pages: '12 templates',
+    format: 'DOCX + PDF',
+    tags: ['Email', 'Prospection', 'Sales'],
+    icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+    color: 'emerald'
+  },
+  {
+    category: 'Checklist',
+    badge: 'Essentiel',
+    badgeColor: 'violet',
+    title: 'Checklist : Audit marketing B2B en 75 points',
+    description: "Évaluez l\'efficacité de votre marketing B2B en moins de 2 heures. Couvre le SEO, le paid, le contenu, le CRM et l\"alignement sales-marketing.',
+    pages: '75 points',
+    format: 'PDF + Notion',
+    tags: ['Audit', 'Marketing', 'Performance'],
+    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
+    color: 'violet'
+  },
+  {
+    category: 'Template',
+    badge: null,
+    badgeColor: null,
+    title: 'Tableau de bord marketing B2B — Template Google Sheets',
+    description: "Un dashboard complet pour suivre vos métriques marketing : trafic, leads, MQLs, SQLs, coût d\'acquisition et LTV. Formules pré-configurées et graphiques automatiques.",
+    pages: '8 onglets',
+    format: 'Google Sheets',
+    tags: ['Analytics', 'Reporting', 'Dashboard'],
+    icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+    color: 'orange'
+  },
+  {
+    category: 'Guide',
+    badge: null,
+    badgeColor: null,
+    title: 'Guide LinkedIn Ads B2B : de zéro à 10 leads qualifiés par semaine',
+    description: 'Maîtrisez la publicité LinkedIn pour générer des leads B2B de qualité. Ciblage, formats, copywriting et optimisation des enchères expliqués étape par étape.',
+    pages: '28 pages',
+    format: 'PDF',
+    tags: ['LinkedIn', 'Paid', 'Lead Gen'],
+    icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z',
+    color: 'blue'
+  },
+  {
+    category: 'Checklist',
+    badge: null,
+    badgeColor: null,
+    title: 'Checklist lancement produit B2B : 50 étapes clés',
+    description: "Ne ratez plus jamais le lancement d\'un produit ou service B2B. De la définition du persona à la campagne go-to-market, chaque étape est détaillée avec des ressources associées.",
+    pages: '50 étapes',
+    format: 'PDF + Trello',
+    tags: ['Lancement', 'GTM', 'Produit'],
+    icon: 'M5 13l4 4L19 7',
+    color: 'rose'
+  }
+];
+
+const colorMap: Record<string, Record<string, string>> = {
+  blue: {
+    bg: 'bg-blue-500/10',
+    border: 'border-blue-500/20',
+    icon: 'text-blue-400',
+    tag: 'bg-blue-500/10 text-blue-300',
+    badge: 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+  },
+  emerald: {
+    bg: 'bg-emerald-500/10',
+    border: 'border-emerald-500/20',
+    icon: 'text-emerald-400',
+    tag: 'bg-emerald-500/10 text-emerald-300',
+    badge: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+  },
+  violet: {
+    bg: 'bg-violet-500/10',
+    border: 'border-violet-500/20',
+    icon: 'text-violet-400',
+    tag: 'bg-violet-500/10 text-violet-300',
+    badge: 'bg-violet-500/10 text-violet-400 border-violet-500/20'
+  },
+  orange: {
+    bg: 'bg-orange-500/10',
+    border: 'border-orange-500/20',
+    icon: 'text-orange-400',
+    tag: 'bg-orange-500/10 text-orange-300',
+    badge: 'bg-orange-500/10 text-orange-400 border-orange-500/20'
+  },
+  rose: {
+    bg: 'bg-rose-500/10',
+    border: 'border-rose-500/20',
+    icon: 'text-rose-400',
+    tag: 'bg-rose-500/10 text-rose-300',
+    badge: 'bg-rose-500/10 text-rose-400 border-rose-500/20'
+  }
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+
+  <!-- Hero -->
+  <section class="relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pt-24 pb-16 overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(99,102,241,0.12)_0%,_transparent_60%)] pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(59,130,246,0.08)_0%,_transparent_60%)] pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 mb-6">
+        <svg class="w-3.5 h-3.5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <span class="text-indigo-400 text-sm font-medium tracking-wide">100% gratuit, sans inscription requise</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+        Ressources B2B <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">actionnables</span>,
+        <br class="hidden sm:block" /> gratuitement
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-10">
+        Des guides stratégiques, templates opérationnels et checklists expertes conçus spécifiquement pour les équipes marketing, sales et growth B2B. Plus de 6 ressources premium disponibles immédiatement, sans formulaire ni inscription.
+      </p>
+      <!-- Stats -->
+      <div class="flex flex-wrap items-center justify-center gap-8">
+        <div class="text-center">
+          <div class="text-3xl font-extrabold text-white">6+</div>
+          <div class="text-xs text-slate-500 mt-0.5">Ressources disponibles</div>
+        </div>
+        <div class="w-px h-8 bg-slate-700"></div>
+        <div class="text-center">
+          <div class="text-3xl font-extrabold text-white">100%</div>
+          <div class="text-xs text-slate-500 mt-0.5">Téléchargement gratuit</div>
+        </div>
+        <div class="w-px h-8 bg-slate-700"></div>
+        <div class="text-center">
+          <div class="text-3xl font-extrabold text-white">2 400+</div>
+          <div class="text-xs text-slate-500 mt-0.5">Professionnels utilisateurs</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro Text -->
+  <section class="bg-slate-950 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Pourquoi ces ressources sont différentes</h2>
+        <p class="text-slate-400 leading-relaxed mb-4">
+          Le web regorge de contenus marketing génériques et creux. Chez Scalr, nous croyons que les professionnels B2B méritent mieux. Chaque ressource publiée dans cette bibliothèque a été développée en collaboration avec des praticiens actifs : directeurs marketing, heads of growth, fondateurs de SaaS et consultants en stratégie commerciale.
+        </p>
+        <p class="text-slate-400 leading-relaxed">
+          Nos guides ne sont pas des introductions pour débutants. Ils s'adressent à des équipes qui ont déjà les bases et qui cherchent à franchir un cap : améliorer leurs taux de conversion, structurer leur machine de génération de leads, ou aligner efficacement leurs équipes sales et marketing autour d'objectifs communs.
+        </p>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="flex flex-wrap gap-3 mb-10">
+        <h3 class="sr-only">Filtrer par catégorie</h3>
+        <button class="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium transition-all duration-200">Tout voir</button>
+        <button class="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700/60 text-slate-400 text-sm font-medium hover:bg-slate-800 hover:text-white transition-all duration-200">Guides</button>
+        <button class="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700/60 text-slate-400 text-sm font-medium hover:bg-slate-800 hover:text-white transition-all duration-200">Templates</button>
+        <button class="px-4 py-2 rounded-lg bg-slate-800/60 border border-slate-700/60 text-slate-400 text-sm font-medium hover:bg-slate-800 hover:text-white transition-all duration-200">Checklists</button>
+      </div>
+
+      <!-- Resources Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {resources.map((resource) => {
+          const colors = colorMap[resource.color];
+          return (
+            <article class={`group relative flex flex-col bg-slate-900/50 border border-slate-800/60 rounded-2xl p-6 hover:border-slate-700/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-950/50`}>
+              <!-- Top Row -->
+              <div class="flex items-start justify-between mb-5">
+                <div class={`w-12 h-12 rounded-xl ${colors.bg} ${colors.border} border flex items-center justify-center flex-shrink-0`}>
+                  <svg class={`w-6 h-6 ${colors.icon}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d={resource.icon} />
+                  </svg>
+                </div>
+                <div class="flex items-center gap-2">
+                  {resource.badge && (
+                    <span class={`text-xs font-semibold px-2.5 py-1 rounded-full border ${colorMap[resource.badgeColor!].badge}`}>
+                      {resource.badge}
+                    </span>
+                  )}
+                  <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-800 text-slate-400 border border-slate-700/60">
+                    {resource.category}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Content -->
+              <h3 class="text-base font-semibold text-white leading-snug mb-3 group-hover:text-blue-300 transition-colors duration-200">
+                {resource.title}
+              </h3>
+              <p class="text-sm text-slate-400 leading-relaxed mb-5 flex-1">
+                {resource.description}
+              </p>
+
+              <!-- Meta -->
+              <div class="flex flex-wrap gap-1.5 mb-5">
+                {resource.tags.map((tag: string) => (
+                  <span class={`text-xs px-2 py-0.5 rounded-md font-medium ${colors.tag}`}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <!-- Footer -->
+              <div class="flex items-center justify-between pt-4 border-t border-slate-800/60">
+                <div class="flex items-center gap-3 text-xs text-slate-500">
+                  <span class="flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    {resource.pages}
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    {resource.format}
+                  </span>
+                </div>
+                <a
+                  href="#"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                >
+                  Télécharger
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- How to use section -->
+  <section class="bg-slate-900/30 border-t border-slate-800/40 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Comment exploiter ces ressources au maximum</h2>
+          <p class="text-slate-400 leading-relaxed mb-6">
+            Télécharger un guide ne suffit pas. Ce qui fait la différence entre les équipes B2B qui stagnent et celles qui scalent, c'est l'implémentation rigoureuse et la mesure des résultats. Voici comment nous recommandons d'utiliser nos ressources.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+                <span class="text-blue-400 text-xs font-bold">01</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-white mb-1">Choisissez votre levier prioritaire</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Identifiez le maillon faible de votre funnel avant de télécharger. Chaque ressource cible un problème précis.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+                <span class="text-indigo-400 text-xs font-bold">02</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-white mb-1">Implémentez en sprint de 2 semaines</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Nos ressources sont conçues pour être déployées rapidement. Bloquez du temps en équipe pour un déploiement structuré.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
+                <span class="text-violet-400 text-xs font-bold">03</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-white mb-1">Mesurez, itérez, scalez</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Utilisez notre tableau de bord (disponible ci-dessus) pour suivre l'impact de chaque action sur vos métriques business.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Card -->
+        <div class="bg-gradient-to-br from-blue-600/10 via-indigo-600/10 to-violet-600/10 border border-blue-500/20 rounded-2xl p-8">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/25">
+            <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Vous avez besoin d'une ressource spécifique ?</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Notre bibliothèque s'enrichit chaque mois. Si vous ne trouvez pas ce que vous cherchez, signalez-nous le sujet qui vous manque. Les ressources les plus demandées sont développées en priorité.
+          </p>
+          <div class="space-y-3">
+            <a
+              href="/contact"
+              class="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg shadow-blue-500/20 text-sm"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              Suggérer une ressource
+            </a>
+            <a
+              href="/blog"
+              class="w-full inline-flex items-center justify-center gap-2 bg-slate-800/60 border border-slate-700/60 text-slate-300 hover:text-white hover:bg-slate-800 font-medium py-3 px-6 rounded-xl transition-all duration-200 text-sm"
+            >
+              Explorer nos articles
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": `${pageTitle} | ${siteConfig.name}`,
+    "description": pageDescription,
+    "url": `${siteConfig.url}/ressources-gratuites`,
+    "publisher": {
+      "@type": "Organization",
+      "name": siteConfig.name,
+      "url": siteConfig.url
+    },
+    "hasPart": resources.map(r => ({
+      "@type": "DigitalDocument",
+      "name": r.title,
+      "description": r.description,
+      "encodingFormat": r.format,
+      "isAccessibleForFree": true
+    }))
+  })} />
+</BaseLayout>

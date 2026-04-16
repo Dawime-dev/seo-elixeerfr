@@ -1,0 +1,289 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import siteConfig from '../../site.config.json';
+
+const pageTitle = 'Contact';
+const pageDescription = 'Contactez Scalr pour des partenariats, suggestions éditoriales ou demandes professionnelles B2B. Notre équipe vous répond sous 48h.';
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pt-24 pb-16 overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(59,130,246,0.12)_0%,_transparent_60%)] pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(99,102,241,0.08)_0%,_transparent_60%)] pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 mb-6">
+        <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+        <span class="text-blue-400 text-sm font-medium tracking-wide">Disponible pour collaborer</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+        Parlons <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">stratégie</span> ensemble
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        Que vous souhaitiez établir un partenariat, proposer un sujet éditorial ou discuter d'une opportunité professionnelle, nous sommes à votre écoute. Scalr répond à toutes les demandes sérieuses sous 48 heures ouvrées.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="bg-slate-950 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+
+        <!-- Left Column: Info -->
+        <div class="lg:col-span-2 space-y-8">
+
+          <!-- Why Contact Us -->
+          <div>
+            <h2 class="text-2xl font-bold text-white mb-4">Pourquoi nous écrire ?</h2>
+            <p class="text-slate-400 leading-relaxed mb-6">
+              Scalr est un média B2B indépendant dédié aux professionnels du marketing, de la croissance et du business. Notre mission est de fournir des ressources actionnables, des analyses de fond et des stratégies éprouvées pour vous aider à scaler vos activités.
+            </p>
+            <p class="text-slate-400 leading-relaxed">
+              Nous travaillons avec des experts, des agences et des entreprises qui partagent notre vision d'un contenu B2B de qualité. Si vous pensez pouvoir apporter de la valeur à notre communauté, ou si vous souhaitez bénéficier de notre audience, ce formulaire est votre point d'entrée.
+            </p>
+          </div>
+
+          <!-- Contact Types -->
+          <div class="space-y-4">
+            <h3 class="text-lg font-semibold text-white">Types de demandes</h3>
+
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800/60 hover:border-blue-500/30 transition-colors duration-200">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-white mb-1">Partenariats & Sponsoring</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Collaborations éditoriales, newsletters sponsorisées, co-marketing et opportunités de branding auprès de notre audience B2B.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800/60 hover:border-indigo-500/30 transition-colors duration-200">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-white mb-1">Suggestions éditoriales</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Proposez un sujet, une étude de cas ou un point de vue expert. Nous sélectionnons les contributions qui apportent une vraie valeur ajoutée.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/60 border border-slate-800/60 hover:border-purple-500/30 transition-colors duration-200">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                <svg class="w-5 h-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-white mb-1">Demandes professionnelles</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Conseil en stratégie de contenu, audit marketing, formation B2B ou accompagnement de vos équipes commerciales et marketing.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Response Time -->
+          <div class="p-5 rounded-xl bg-gradient-to-br from-blue-500/5 to-indigo-500/5 border border-blue-500/15">
+            <div class="flex items-center gap-3 mb-3">
+              <svg class="w-5 h-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="text-sm font-semibold text-white">Délai de réponse garanti</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">Toutes les demandes reçues via ce formulaire sont traitées sous <strong class="text-slate-300">48 heures ouvrées</strong>. Pour les demandes urgentes, précisez-le dans votre message.</p>
+          </div>
+        </div>
+
+        <!-- Right Column: Form -->
+        <div class="lg:col-span-3">
+          <div class="bg-slate-900/50 border border-slate-800/60 rounded-2xl p-8">
+            <h2 class="text-2xl font-bold text-white mb-2">Envoyez-nous un message</h2>
+            <p class="text-slate-400 text-sm mb-8">Tous les champs marqués d'un astérisque (*) sont obligatoires.</p>
+
+            <form class="space-y-6" action="#" method="POST">
+              <!-- Name + Company -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="firstname" class="block text-sm font-medium text-slate-300 mb-2">Prénom *</label>
+                  <input
+                    type="text"
+                    id="firstname"
+                    name="firstname"
+                    required
+                    placeholder="Jean"
+                    class="w-full bg-slate-800/60 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200"
+                  />
+                </div>
+                <div>
+                  <label for="lastname" class="block text-sm font-medium text-slate-300 mb-2">Nom *</label>
+                  <input
+                    type="text"
+                    id="lastname"
+                    name="lastname"
+                    required
+                    placeholder="Dupont"
+                    class="w-full bg-slate-800/60 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200"
+                  />
+                </div>
+              </div>
+
+              <!-- Email + Company -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email professionnel *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder="jean@entreprise.com"
+                    class="w-full bg-slate-800/60 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200"
+                  />
+                </div>
+                <div>
+                  <label for="company" class="block text-sm font-medium text-slate-300 mb-2">Entreprise</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    placeholder="Scalr Inc."
+                    class="w-full bg-slate-800/60 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200"
+                  />
+                </div>
+              </div>
+
+              <!-- Subject -->
+              <div>
+                <label for="subject" class="block text-sm font-medium text-slate-300 mb-2">Objet de la demande *</label>
+                <select
+                  id="subject"
+                  name="subject"
+                  required
+                  class="w-full bg-slate-800/60 border border-slate-700/60 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200 appearance-none cursor-pointer"
+                >
+                  <option value="" disabled selected class="text-slate-500">Sélectionnez un objet...</option>
+                  <option value="partenariat">Partenariat & Sponsoring</option>
+                  <option value="editorial">Suggestion éditoriale</option>
+                  <option value="conseil">Demande de conseil</option>
+                  <option value="presse">Demande presse / média</option>
+                  <option value="autre">Autre demande</option>
+                </select>
+              </div>
+
+              <!-- Message -->
+              <div>
+                <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Votre message *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="6"
+                  required
+                  placeholder="Décrivez votre projet, votre demande ou votre proposition en quelques lignes. Plus votre message est précis, plus notre réponse sera pertinente."
+                  class="w-full bg-slate-800/60 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200 resize-none"
+                ></textarea>
+                <p class="mt-1.5 text-xs text-slate-500">Minimum 50 caractères recommandés pour une meilleure prise en charge.</p>
+              </div>
+
+              <!-- Budget (optional) -->
+              <div>
+                <label for="budget" class="block text-sm font-medium text-slate-300 mb-2">Budget envisagé <span class="text-slate-500 font-normal">(optionnel)</span></label>
+                <select
+                  id="budget"
+                  name="budget"
+                  class="w-full bg-slate-800/60 border border-slate-700/60 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200 appearance-none cursor-pointer"
+                >
+                  <option value="" class="text-slate-500">Non renseigné</option>
+                  <option value="<1k">Moins de 1 000 €</option>
+                  <option value="1k-5k">1 000 € – 5 000 €</option>
+                  <option value="5k-15k">5 000 € – 15 000 €</option>
+                  <option value="15k+">15 000 € et plus</option>
+                </select>
+              </div>
+
+              <!-- RGPD Consent -->
+              <div class="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="rgpd"
+                  name="rgpd"
+                  required
+                  class="mt-0.5 w-4 h-4 rounded border-slate-600 bg-slate-800 text-blue-500 focus:ring-blue-500/50 cursor-pointer flex-shrink-0"
+                />
+                <label for="rgpd" class="text-xs text-slate-400 leading-relaxed cursor-pointer">
+                  J'accepte que mes données soient traitées par Scalr dans le cadre de cette demande, conformément à notre politique de confidentialité. Ces données ne seront jamais cédées à des tiers. *
+                </label>
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 text-sm"
+              >
+                <span>Envoyer le message</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="bg-slate-900/30 border-t border-slate-800/40 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-bold text-white mb-3">Ce que vous pouvez attendre de nous</h2>
+        <p class="text-slate-400 max-w-xl mx-auto text-sm leading-relaxed">Chez Scalr, chaque collaboration est traitée avec le même niveau d'exigence que celui que nous appliquons à notre contenu éditorial.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="text-center p-6 rounded-xl bg-slate-900/50 border border-slate-800/50">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-base font-semibold text-white mb-2">Réponse sous 48h</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Chaque message reçoit une réponse personnalisée. Pas de réponse automatique générique.</p>
+        </div>
+        <div class="text-center p-6 rounded-xl bg-slate-900/50 border border-slate-800/50">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3 class="text-base font-semibold text-white mb-2">Confidentialité totale</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Vos informations restent strictement confidentielles. Aucune donnée ne sera partagée sans votre accord explicite.</p>
+        </div>
+        <div class="text-center p-6 rounded-xl bg-slate-900/50 border border-slate-800/50">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-base font-semibold text-white mb-2">Valeur immédiate</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Même si nous ne collaborons pas, nous vous orientons vers les ressources les plus adaptées à votre situation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": `${pageTitle} | ${siteConfig.name}`,
+    "description": pageDescription,
+    "url": `${siteConfig.url}/contact`,
+    "publisher": {
+      "@type": "Organization",
+      "name": siteConfig.name,
+      "url": siteConfig.url
+    }
+  })} />
+</BaseLayout>
